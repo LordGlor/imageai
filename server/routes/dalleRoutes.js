@@ -1,9 +1,19 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
-import {v2 as cloudinary } from 'cloudinary';
+import { Configuration, openAIApi } from 'openai';
 
-import Post from '../mongodb/models/post.js';
+
 
 dotenv.config();
 
-const router
+const router = express.Router();
+
+const config = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
+})
+
+const openai = new OpenAIApi(config);
+
+router.route('/').get((req,res) => {
+    res.send('Hello from DALL-E!');
+})
